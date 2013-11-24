@@ -1,0 +1,31 @@
+{
+  "name": "btcchina",
+  "version": "0.0.1",
+  "description": "BTCchina REST API wrapper",
+  "keywords": [
+    "btcchina",
+    "btc",
+    "bitcoin",
+    "exchange"
+  ],
+  "author": {
+    "author": "Mike van Rossum <mike@mvr.me>"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "underscore": "1.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/askmike/btcchina"
+  },
+  "main": "btcchina.js",
+  "engines": {
+    "node": ">= 0.7"
+  },
+  "bugs": {
+    "url": "https://github.com/askmike/btcchina/issues",
+    "email": "mike@mvr.me"
+  },
+  "readmeFilename": "README.md"
+}
