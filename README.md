@@ -2,16 +2,22 @@
 
     npm install btcchina
 
-A basic API wrapper for the [BTCChina REST API](http://btcchina.org/api-trade-documentation-en). Please refer to [their documentation](http://btcchina.org/api-trade-documentation-en) for all calls explained. Check out `example.js` for a list of all possible calls and their parameters.
+A basic API wrapper for the BTCChina Trading and Market API. 
+
+Please refer to the documentation of the [Trading API](http://btcchina.org/api-trade-documentation-en) and for the [Market API](http://btcchina.org/api-market-data-documentation-en) for all calls explained. Check out `example.js` for a list of all possible calls and their parameters.
 
     var BTCChina = require('btcchina');
     var btcchina = new BTCChina(key, secret);
 
+    // create an order (API key and secret required)
     var price = 9000;
     var amount = 1;
     btcchina.buyOrder(price, amount, function(err, result) {
       console.log(result);
     });
+
+    // ask the ticker (public API call)
+    btcchina.ticker(console.log);
 
 # Final
 
