@@ -171,9 +171,6 @@ BTCChina.prototype.getOrder = function(id, callback) {
 }
 
 BTCChina.prototype.getOrders = function(openonly, callback) {
-  // if(openonly === null || openonly === undefined)
-  //   // default is true
-  //   openonly = true;
   if(openonly === false)
     this._tradeRequest('getOrders', [openonly], callback);
   else
