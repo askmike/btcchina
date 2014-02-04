@@ -54,7 +54,7 @@ BTCChina.prototype._marketRequest = function(method, params, callback) {
     }
   };
 
-  this._request(http, options, null, callback);
+  this._request(https, options, null, callback);
 }
 
 
@@ -136,7 +136,11 @@ BTCChina.prototype._tradeRequest = function(method, params, callback) {
 // 
 
 BTCChina.prototype.buyOrder = function(price, amount, callback) {
-  this._tradeRequest('buyOrder', [price, amount], callback);
+   throw 'This method is deprecated. Please use buyOrder2.';
+}
+
+BTCChina.prototype.buyOrder2 = function(price, amount, callback) {
+  this._tradeRequest('buyOrder2', [price, amount], callback);
 }
 
 BTCChina.prototype.cancelOrder = function(id, callback) {
@@ -202,7 +206,11 @@ BTCChina.prototype.requestWithdrawal = function(currency, amount, callback) {
 }
 
 BTCChina.prototype.sellOrder = function(currency, amount, callback) {
-  this._tradeRequest('sellOrder', [currency, amount], callback);
+  throw 'This method is deprecated. Please use sellOrder2.';
+}
+
+BTCChina.prototype.sellOrder2 = function(currency, amount, callback) {
+  this._tradeRequest('sellOrder2', [currency, amount], callback);
 }
 
 module.exports = BTCChina;
