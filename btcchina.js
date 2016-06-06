@@ -1,7 +1,7 @@
 var querystring = require("querystring");
 var https = require('https');
 var http = require('http');
-var _ = require('underscore');
+var _ = require('lodash');
 var crypto = require('crypto');
 
 var BTCChina = function(key, secret) {
@@ -22,6 +22,9 @@ BTCChina.prototype._request = function(handler, options, data, callback) {
     res.on('end', function() {
       if(buffer === '401 Unauthorized\n')
         return callback('General API error: 401 Unauthorized');
+
+      if(_.isEmpty(buffer))
+        return callback('BTCChina returned empty response');
 
       try {
         var json = JSON.parse(buffer);
@@ -61,24 +64,26 @@ BTCChina.prototype._marketRequest = function(method, params, callback) {
 // 
 // Market API calls
 // 
-BTCChina.prototype.ticker = function(callback) {
-  this._marketRequest('ticker', null, callback);
+BTCChina.prototype.ticker = function(market, callback) {
+  if(!market)
+    market = 'all';
+  this._marketRequest('ticker', {market: market}, callback);
 }
 
-BTCChina.prototype.trades = function(callback) {
-  this._marketRequest('trades', null, callback);
+BTCChina.prototype.trades = function(market, callback) {
+  this._marketRequest('trades', {market: market}, callback);
 }
 
-BTCChina.prototype.historydata = function(since, callback) {
-  if(!callback) {
-    callback = since;
-    this._marketRequest('historydata', null, callback);
-  } else
-    this._marketRequest('historydata', {since: since}, callback);
+BTCChina.prototype.historydata = function(market, since, limit, callback) {
+  this._marketRequest('historydata', {
+    market: market,
+    since: since,
+    limit: limit
+  }, callback);
 }
 
-BTCChina.prototype.orderbook = function(callback) {
-  this._marketRequest('orderbook', null, callback);
+BTCChina.prototype.orderbook = function(market, limit, callback) {
+  this._marketRequest('orderbook', {market: market, limit: limit}, callback);
 }
 
 // internal method for accessing the Trade API

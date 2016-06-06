@@ -2,10 +2,10 @@ var BTCChina = require('./btcchina.js');
 
 var publicBtcchina = new BTCChina();
 
-publicBtcchina.ticker(console.log);
-// publicBtcchina.trades(console.log);
-// publicBtcchina.historydata(5000, console.log);
-// publicBtcchina.orderbook(console.log);
+publicBtcchina.ticker('all', console.log);
+// publicBtcchina.trades('btccny', console.log);
+// publicBtcchina.historydata('ltccny', false, 1000, console.log);
+// publicBtcchina.orderbook('btccny', 100, console.log);
 
 var key = 'your-api-key';
 var secret = 'your-api-secret';
