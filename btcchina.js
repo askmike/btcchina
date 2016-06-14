@@ -144,12 +144,12 @@ BTCChina.prototype.buyOrder = function(price, amount, callback) {
    throw 'This method is deprecated. Please use buyOrder2.';
 }
 
-BTCChina.prototype.buyOrder2 = function(price, amount, callback) {
-  this._tradeRequest('buyOrder2', [price, amount], callback);
+BTCChina.prototype.buyOrder2 = function(price, amount, market, callback) {
+  this._tradeRequest('buyOrder2', [price, amount, market], callback);
 }
 
-BTCChina.prototype.cancelOrder = function(id, callback) {
-  this._tradeRequest('cancelOrder', [id], callback);
+BTCChina.prototype.cancelOrder = function(id, market, callback) {
+  this._tradeRequest('cancelOrder', [id, market], callback);
 }
 
 BTCChina.prototype.getAccountInfo = function(callback) {
@@ -175,15 +175,15 @@ BTCChina.prototype.getMarketDepth2 = function(limit, callback) {
   this._tradeRequest('getMarketDepth2', [limit], callback);
 }
 
-BTCChina.prototype.getOrder = function(id, callback) {
-  this._tradeRequest('getOrder', [id], callback);
+BTCChina.prototype.getOrder = function(id, market, callback) {
+  this._tradeRequest('getOrder', [id, market], callback);
 }
 
-BTCChina.prototype.getOrders = function(openonly, callback) {
+BTCChina.prototype.getOrders = function(openonly, market, callback) {
   if(openonly === false)
-    this._tradeRequest('getOrders', [openonly], callback);
+    this._tradeRequest('getOrders', [openonly, market], callback);
   else
-    this._tradeRequest('getOrders', [], callback);
+    this._tradeRequest('getOrders', [market], callback);
 }
 
 BTCChina.prototype.getTransactions = function(type, limit, callback) {
@@ -214,8 +214,8 @@ BTCChina.prototype.sellOrder = function(currency, amount, callback) {
   throw 'This method is deprecated. Please use sellOrder2.';
 }
 
-BTCChina.prototype.sellOrder2 = function(currency, amount, callback) {
-  this._tradeRequest('sellOrder2', [currency, amount], callback);
+BTCChina.prototype.sellOrder2 = function(currency, amount, market, callback) {
+  this._tradeRequest('sellOrder2', [currency, amount, market], callback);
 }
 
 module.exports = BTCChina;
